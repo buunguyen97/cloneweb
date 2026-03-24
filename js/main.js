@@ -61,7 +61,7 @@ $(document).ready(function () {
     var windowHeight = $(window).height();
     var scrollTop = $(window).scrollTop();
 
-    $('.fade-in, .fade-in-left, .fade-in-right').each(function () {
+    $('.fade-in, .fade-in-left, .fade-in-right, .fca-h2-reveal, .products-h2-reveal').each(function () {
       var elementTop = $(this).offset().top;
       var triggerPoint = scrollTop + windowHeight - 80;
 
@@ -198,14 +198,7 @@ $(document).ready(function () {
   $(window).on('scroll', animateCounters);
   animateCounters();
 
-  /* ===================================
-     HOVER EFFECTS for product cards
-     =================================== */
-  $('.product-card').on('mouseenter', function () {
-    $(this).stop(true).find('h3').css('color', '#FFCE32');
-  }).on('mouseleave', function () {
-    $(this).stop(true).find('h3').css('color', '#000');
-  });
+
 
   /* ===================================
      BUTTON RIPPLE EFFECT (Gỡ bỏ để giống gốc)

@@ -406,7 +406,7 @@ ol {
 }
 
 .section-inner {
-  max-width: var(--site-max-width);
+  max-width: 1180px;
   margin: 0 auto;
 }
 
@@ -441,44 +441,39 @@ main>div:not(.fca-images) {
 
 .fca-section {
   background: transparent;
-  /* Kính trong suốt để nhìn xuyên thấu xuống hình nền điện thoại bên dưới */
   position: relative;
   padding: 0;
   z-index: 1;
-  /* Lớp trung gian */
 }
 
 .fca-inner {
   display: flex;
   margin: 0;
-  max-width: 100vw;
   align-items: stretch;
 }
 
 /* Wrapper để neo text dính vào lõi khung 980px */
 .fca-content-wrapper {
   background: #fff;
-  /* Sơn trắng nửa trái màn hình để làm cái rèm che đậy */
   position: relative;
   z-index: 2;
-  /* Nâng màn chắn bên trái lên mặt nước */
-  width: 50%;
+  flex-shrink: 0;
   display: flex;
   justify-content: flex-start;
   padding-left: max(20px, 9vw);
-  padding-top: 133px;
-  padding-bottom: 200px;
+  padding-top: 100px;
+  padding-bottom: 140px;
+  box-sizing: border-box;
 }
 
 .fca-content {
   width: 100%;
-  padding-right: 0px;
-  padding-left: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-/* Vùng quét Parallax (Reveal Window) */
-@media (min-width: 769px) {
+/* Vùng quét Parallax (Reveal Window) — chỉ áp dụng trên desktop rộng */
+@media (min-width: 1201px) {
   .fca-images {
     position: fixed;
     top: 64px;
@@ -486,23 +481,28 @@ main>div:not(.fca-images) {
     width: 50vw;
     height: calc(100vh - 64px);
     z-index: 0;
-    /* Ép hình ảnh Chìm sâu xuống tận đáy đại dương! */
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
-    /* Đẩy toàn bộ nội dung ép sát kịch lề phải màn hình! */
+  }
+
+  /* Ảnh scale vừa panel, neo góc phải-trên, không bị cắt trái */
+  .fca-images img {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: right top !important;
+    max-width: none !important;
+    margin: 0 !important;
   }
 }
 
-/* Hiển thị lại tấm ảnh bị tắt nhầm ở nhịp trước */
+/* Global img fallback (overridden per breakpoint) */
 .fca-images img {
-  display: block !important;
-  width: 125%;
-  /* Phóng to bức ảnh chà bá ra đúng theo ý User ("bự ra") */
+  display: block;
+  width: 100%;
   height: auto;
   object-fit: contain;
   object-position: right top;
-  /* Mỏ neo cực đoan: Sát mí phải, Sát mí trên! */
   margin: 0;
 }
 
@@ -522,13 +522,14 @@ main>div:not(.fca-images) {
 }
 
 .fca-content .subtitle-en {
-  font-size: 14px;
-  color: #999;
+  font-size: 16px;
+  color: #cfcfcf;
   margin-bottom: 24px;
 }
 
 .fca-content p {
-  font-size: 15px;
+  font-size: 18px;
+  font-weight: 200;
   color: #444;
   line-height: 1.8;
   margin-bottom: 20px;
@@ -537,15 +538,17 @@ main>div:not(.fca-images) {
 
 /* Nút cong vát màu cam mượt */
 .btn-custom-yellow {
-  background-color: #fda900;
+  background-color: #FFA800;
   color: #fff;
-  font-size: 15px;
-  font-weight: 700;
-  padding: 16px 36px;
+  font-size: 18px;
+  font-weight: 300;
+  width: 259px;
+  height: 55px;
+  padding: 0 20px;
   border-radius: 50px;
   border: none;
   font-family: var(--font-kr);
-  transition: all 0.3s ease;
+  transition: font-size 0.2s ease, box-shadow 0.2s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -554,59 +557,60 @@ main>div:not(.fca-images) {
 }
 
 .btn-custom-yellow:hover {
-  background-color: #e59800;
-  color: #fff;
+  font-size: 19px;
   box-shadow: 0 6px 20px rgba(253, 169, 0, 0.4);
 }
+
 
 
 /* ===================================
    PRODUCTS SECTION
    =================================== */
 .products-section {
-  background: var(--yellow);
-  padding: 100px 20px 80px;
+  background-image: url('https://static.wixstatic.com/media/f775ce_ef2794c5b26d425da3f7f72dea36967b~mv2.png/v1/fill/w_1920,h_510,al_c,q_95,enc_avif,quality_auto/f775ce_ef2794c5b26d425da3f7f72dea36967b~mv2.png');
+  background-size: cover;
+  background-position: center;
+  padding: 80px 20px 140px;
+  position: relative;
+  overflow: hidden;
 }
 
 .products-section .section-header h2 {
-  font-size: 36px;
+  font-size: 45px;
+  margin-bottom: 10px;
 }
 
 .products-section .section-header p {
   color: rgba(0, 0, 0, 0.7);
+  font-size: 18px;
 }
 
 .products-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 10px;
   margin-top: 50px;
 }
 
 .product-card {
   background: #fff;
   color: #000;
-  padding: 24px 20px;
-  text-align: left;
-  border-radius: 4px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 25px 18px;
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden; /* ẩn tất cả phần lòi ra ngoài */
+  width: 285px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
-.product-card:hover {
-  transform: translateY(-6px);
-}
 
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
 
 .product-card .num {
-  font-size: 13px;
+  font-size: 22px;
   color: #555;
   font-weight: 700;
-  margin-bottom: 6px;
+  margin-bottom: -8px;
   letter-spacing: 0;
 }
 
@@ -623,22 +627,22 @@ main>div:not(.fca-images) {
 }
 
 .product-card h3 {
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 700;
+  margin-top: 0;
   margin-bottom: 6px;
   font-family: var(--font-kr);
   color: #000;
 }
 
 .product-card .sub {
-  font-size: 11px;
-  color: #888;
-  margin-bottom: 4px;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .product-card .desc {
-  font-size: 12px;
-  color: #555;
+  font-size: 16px;
+  font-weight: 200;
 }
 
 .product-card .img-circle {
@@ -646,6 +650,21 @@ main>div:not(.fca-images) {
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Hover: card to lên, ảnh xoay — font-size KHÔNG thay đổi để tránh tăng chiều cao */
+.product-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.13);
+}
+
+.product-card:hover .img-circle {
+  transform: rotate(-12deg);
 }
 
 /* ===================================
@@ -1291,6 +1310,32 @@ main>div:not(.fca-images) {
   transform: translateX(0);
 }
 
+/* FCA H2 scroll reveal — chỉ riêng tiêu đề lớn */
+.fca-h2-reveal {
+  opacity: 0;
+  transform: translateX(-70px);
+  transition: opacity 2s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fca-h2-reveal.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Products H2 scroll reveal */
+.products-h2-reveal {
+  opacity: 0;
+  transform: translateY(70px);
+  transition: opacity 1.3s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.products-h2-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Delay classes */
 .delay-1 {
   transition-delay: 0.1s;
@@ -1385,16 +1430,26 @@ main>div:not(.fca-images) {
 @media (max-width: 1024px) {
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
   }
 
-  .fca-inner,
+  /* card không fix width khi tablet */
+  .products-section .product-card {
+    width: 100%;
+  }
+
+  .products-section .section-header h2 {
+    font-size: 32px;
+  }
+
+  .products-section .more-btn {
+    width: auto;
+    padding: 13px 32px;
+  }
+
   .about-intro-inner {
     grid-template-columns: 1fr;
     gap: 40px;
-  }
-
-  .fca-images {
-    text-align: center;
   }
 
   .stats-grid {
@@ -1407,6 +1462,66 @@ main>div:not(.fca-images) {
 
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===== TABLET: FCA image as full-bleed background ===== */
+@media (min-width: 769px) and (max-width: 1200px) {
+
+  /* Undo the fixed-position parallax window */
+  .fca-images {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 0 !important;
+    display: flex !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+  }
+
+  .fca-images img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+  }
+
+  /* Section itself becomes a positioning context */
+  .fca-section {
+    position: relative !important;
+    overflow: hidden;
+  }
+
+  /* Stack vertically, image behind content */
+  .fca-inner {
+    display: block !important;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Content panel: full-width with a translucent white backdrop */
+  .fca-content-wrapper {
+    width: 100% !important;
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.88) !important;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 60px 40px 70px !important;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+  }
+
+  .fca-content {
+    max-width: 600px;
+  }
+
+  .fca-content h2 {
+    font-size: 32px !important;
   }
 }
 
@@ -1443,7 +1558,30 @@ main>div:not(.fca-images) {
 
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 10px;
+  }
+
+  .products-section .product-card {
+    width: 100%;
+  }
+
+  .product-card .num {
+    font-size: 18px;
+  }
+
+  .product-card h3 {
+    font-size: 18px;
+  }
+
+  .product-card .sub,
+  .product-card .desc {
+    font-size: 13px;
+  }
+
+  .products-section .more-btn {
+    width: auto;
+    padding: 12px 28px;
+    font-size: 16px;
   }
 
   .steps-grid {
@@ -1492,7 +1630,6 @@ main>div:not(.fca-images) {
   /* ── FCA Section Mobile ── */
   .fca-section {
     position: relative;
-    /* Bỏ overflow: hidden vì nó có thể clip fixed header trên mobile */
   }
 
   /* Chuyển ảnh từ fixed → absolute, hiện góc trên phải */
@@ -1500,14 +1637,15 @@ main>div:not(.fca-images) {
     display: none !important;
   }
 
-  /* Content full width, đè lên ảnh */
+  /* Content full width */
   .fca-content-wrapper {
     width: 100% !important;
-    padding-top: 30px !important;
-    padding-bottom: 40px !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    padding-top: 40px !important;
+    padding-bottom: 50px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
     background: #fff;
+    box-sizing: border-box !important;
   }
 
   .logo-small img {
@@ -1541,6 +1679,21 @@ main>div:not(.fca-images) {
 @media (max-width: 480px) {
   .products-grid {
     grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .products-section .product-card {
+    width: 100%;
+  }
+
+  .products-section .section-header h2 {
+    font-size: 26px;
+  }
+
+  .products-section .more-btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
   }
 
   .hero-content h1 {
@@ -1598,6 +1751,7 @@ main>div:not(.fca-images) {
 
 .market-section .section-header h2 {
   color: #fff;
+  font-size: 45px;
 }
 
 .market-slide {
@@ -1682,63 +1836,6 @@ main>div:not(.fca-images) {
   }
 }
 
-/* FCA Section background */
-.fca-section {
-  /* background: #f3f3f3; */
-}
-
-/* Products Section */
-.products-section {
-  background-image: url('https://static.wixstatic.com/media/f775ce_ef2794c5b26d425da3f7f72dea36967b~mv2.png/v1/fill/w_1920,h_510,al_c,q_95,enc_avif,quality_auto/f775ce_ef2794c5b26d425da3f7f72dea36967b~mv2.png');
-  background-size: cover;
-  background-position: center;
-}
-
-.products-section .section-header h2 {
-  color: #000;
-  font-size: 32px;
-}
-
-.products-section .section-header p {
-  color: #222;
-}
-
-.products-section .more-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #000;
-  color: #fff;
-  padding: 14px 32px;
-  border-radius: 0px;
-  font-size: 15px;
-  font-weight: 600;
-  margin-top: 10px;
-  margin-bottom: 40px;
-  transition: background 0.3s;
-}
-
-.products-section .more-btn:hover {
-  background: #333;
-}
-
-/* Product cards */
-.product-card .card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 10px;
-}
-
-.product-card .img-circle {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-left: auto;
-  margin-bottom: 12px;
-  display: block;
-}
 
 /* Infinox Core Section */
 .core-section {
@@ -2009,4 +2106,13 @@ main>div:not(.fca-images) {
   .footer-right {
     align-items: flex-start;
   }
+}
+
+.footer-top {
+  flex-direction: column !important;
+}
+
+.footer-right {
+  align-items: flex-start;
+}
 }
