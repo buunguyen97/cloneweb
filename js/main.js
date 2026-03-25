@@ -95,12 +95,13 @@ $(document).ready(function () {
       currentIndex = index;
       $track.css('transform', 'translateX(' + (-100 * currentIndex) + '%)');
       $dots.removeClass('active').eq(currentIndex).addClass('active');
+      $slides.removeClass('active').eq(currentIndex).addClass('active');
     }
 
     function startAutoPlay() {
       autoPlayInterval = setInterval(function () {
         goToSlide(currentIndex + 1);
-      }, 4000);
+      }, 7000);
     }
 
     function stopAutoPlay() {
